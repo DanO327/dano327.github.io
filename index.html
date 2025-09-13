@@ -1,40 +1,252 @@
 <!DOCTYPE html>
-<html lang="es" class="transition-colors">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { darkMode: 'class' }</script>
+  <title>Portfolio – Dan Ortega</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-texto: #ffffff;
+      --color-principal: #cc5200; /* naranja más suave */
+      --color-boton-hover: #e67333;
+      /* Fondo degradado de las tarjetas: gris predominante, naranja sutil */
+      --color-borde-gradiente-start: rgba(204,82,0,0.3); /* naranja tenue */
+      --color-borde-gradiente-end: rgba(51,51,51,0.8); /* gris oscuro predominante */
+    }
+
+    * { box-sizing: border-box; margin:0; padding:0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--color-texto);
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; }
+
+    /* Animaciones */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 15px rgba(204,82,0,0.5); }
+      50% { box-shadow: 0 0 25px rgba(204,82,0,0.8); }
+    }
+
+    /* Splash screen */
+    #splash {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #222;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    #splash h1 {
+      font-size: 3rem;
+      color: var(--color-principal);
+      margin-bottom: 1rem;
+      text-align: center;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    #splash p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      animation: fadeUp 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+
+    #splash button {
+      padding: 0.75rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 9999px;
+      background-color: var(--color-principal);
+      color: var(--color-texto);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      animation: fadeUp 1s ease 0.6s forwards, glow 2s infinite;
+      opacity: 0;
+    }
+
+    #splash button:hover {
+      background-color: var(--color-boton-hover);
+      transform: scale(1.05);
+    }
+
+    /* Portfolio (inicialmente oculto) */
+    #portfolio { display: none; }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start));
+      border-radius: 1rem;
+      margin: 2rem auto;
+      max-width: 900px;
+      border: 1px solid;
+      border-image: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start)) 1;
+      box-shadow: 0 0 8px rgba(204,82,0,0.5);
+    }
+
+    header h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--color-principal); }
+    header p { font-size: 1.25rem; margin-bottom: 1.5rem; }
+    header a {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      background-color: var(--color-principal);
+      color: var(--color-texto);
+      font-weight: 600;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    header a:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
+
+    main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+
+    h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--color-principal); }
+
+    /* Grid de proyectos */
+    .projects-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: flex-start;
+    }
+
+    .card {
+      /* Fondo con degradado gris predominante y naranja muy sutil */
+      background: linear-gradient(135deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start));
+      border: 1px solid;
+      border-image: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start)) 1;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 8px rgba(204,82,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
+      background-size: 200% 200%;
+      background-position: left top;
+      color: var(--color-texto);
+    }
+    .card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 0 15px rgba(204,82,0,0.6); 
+      background-position: right bottom; /* efecto sutil de movimiento del degradado */
+    }
+
+    .card h3 { margin-bottom: 0.5rem; color: var(--color-principal); font-size: 1.5rem; }
+    .card p, .card li { color: var(--color-texto); margin-bottom: 0.5rem; }
+    .card ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card .buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .card .buttons a {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      color: var(--color-texto);
+      font-weight: 600;
+      background-color: var(--color-principal);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .card .buttons a:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
+
+    footer { text-align: center; padding: 2rem 1rem; color: var(--color-texto); }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.75rem; }
+      .card img { height: 180px; }
+      .projects-grid { justify-content: center; }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100">
+<body>
 
-  <header class="p-6 bg-blue-500 dark:bg-blue-700 text-white text-center">
-    <h1 class="text-3xl font-bold">Mi Portfolio</h1>
-    <p class="mt-2">Proyectos de DAW y desarrollo web</p>
-  </header>
+  <!-- Splash screen -->
+  <div id="splash">
+    <h1>Hola, soy Dan</h1>
+    <p>Web Developer & Frontend Enthusiast 💻✨</p>
+    <button id="enterBtn">Entrar al Portfolio</button>
+  </div>
 
-  <main class="p-6 space-y-6">
+  <!-- Portfolio -->
+  <div id="portfolio">
+    <header>
+      <h1>Dan Ortega</h1>
+      <p>Desarrollador Web y DAW – Proyectos Interactivos</p>
+      <a href="#projects">Ver Mis Proyectos</a>
+    </header>
 
-    <!-- Proyecto: Gestor de Tareas -->
-    <section class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-      <h2 class="text-2xl font-bold mb-2">Gestor de Tareas Avanzado</h2>
-      <p class="mb-4">
-        Aplicación web interactiva para organizar tareas con prioridad, filtros, edición, búsqueda y contador de pendientes.
-      </p>
-      <ul class="list-disc list-inside mb-4">
-        <li>Añadir tareas con Enter o botón</li>
-        <li>Prioridad y resaltado automático de tareas críticas</li>
-        <li>Orden inteligente y dinámico</li>
-        <li>Editar y borrar tareas con botones</li>
-        <li>Filtros y búsqueda en tiempo real</li>
-        <li>Contador de tareas pendientes</li>
-        <li>Modo oscuro</li>
-      </ul>
-      <a href="gestor de tareas/gestor de tareas.html" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Ver Proyecto</a>
-    </section>
+    <main>
+      <section id="projects">
+        <h2>Proyectos Destacados</h2>
+        <div class="projects-grid">
+          <div class="card">
+            <h3>Gestor de Tareas Avanzado</h3>
+            <p>Aplicación web interactiva para organizar tareas con prioridad, filtros, edición, búsqueda y contador de pendientes.</p>
+            <img src="gestor de tareas/preview.png" alt="Preview Gestor de Tareas">
+            <ul>
+              <li>Añadir tareas con Enter o botón</li>
+              <li>Prioridad y resaltado automático</li>
+              <li>Orden inteligente y dinámico</li>
+              <li>Editar y borrar tareas con botones</li>
+              <li>Filtros y búsqueda en tiempo real</li>
+              <li>Contador de tareas pendientes</li>
+              <li>Modo oscuro</li>
+            </ul>
+            <div class="buttons">
+              <a href="gestor de tareas/gestor de tareas.html" target="_blank">Ver Proyecto</a>
+              <a href="https://github.com/dano327/portfolio" target="_blank">Ver en GitHub</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  </main>
+    <footer>
+      © 2025 Dan Ortega. Todos los derechos reservados.
+    </footer>
+  </div>
+
+  <script>
+    const splash = document.getElementById('splash');
+    const portfolio = document.getElementById('portfolio');
+    const enterBtn = document.getElementById('enterBtn');
+
+    enterBtn.addEventListener('click', () => {
+      splash.style.opacity = '0';
+      setTimeout(() => {
+        splash.style.display = 'none';
+        portfolio.style.display = 'block';
+      }, 500);
+    });
+  </script>
 
 </body>
 </html>
