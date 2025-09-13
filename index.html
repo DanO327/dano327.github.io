@@ -8,15 +8,13 @@
   <style>
     :root {
       --color-texto: #ffffff;
-      --color-principal: #cc5200; /* naranja más suave */
+      --color-principal: #cc5200;
       --color-boton-hover: #e67333;
-      /* Fondo degradado de las tarjetas: gris predominante, naranja sutil */
-      --color-borde-gradiente-start: rgba(204,82,0,0.3); /* naranja tenue */
-      --color-borde-gradiente-end: rgba(51,51,51,0.8); /* gris oscuro predominante */
+      --color-borde-gradiente-start: rgba(204,82,0,0.3);
+      --color-borde-gradiente-end: rgba(51,51,51,0.8);
     }
 
     * { box-sizing: border-box; margin:0; padding:0; }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: url('fondo.jpg') no-repeat center center fixed;
@@ -24,10 +22,8 @@
       color: var(--color-texto);
       min-height: 100vh;
     }
-
     a { text-decoration: none; }
 
-    /* Animaciones */
     @keyframes fadeUp {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -38,140 +34,60 @@
       50% { box-shadow: 0 0 25px rgba(204,82,0,0.8); }
     }
 
-    /* Splash screen */
     #splash {
-      position: fixed;
-      top:0; left:0; right:0; bottom:0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #222;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background-color: #222; z-index: 9999; transition: opacity 0.5s ease;
     }
-
-    #splash h1 {
-      font-size: 3rem;
-      color: var(--color-principal);
-      margin-bottom: 1rem;
-      text-align: center;
-      animation: fadeUp 1s ease forwards;
-    }
-
-    #splash p {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      animation: fadeUp 1s ease 0.3s forwards;
-      opacity: 0;
-    }
-
+    #splash h1 { font-size: 3rem; color: var(--color-principal); margin-bottom: 1rem; text-align: center; animation: fadeUp 1s ease forwards; }
+    #splash p { font-size: 1.5rem; margin-bottom: 2rem; text-align: center; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; }
     #splash button {
-      padding: 0.75rem 2rem;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 9999px;
-      background-color: var(--color-principal);
-      color: var(--color-texto);
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-      animation: fadeUp 1s ease 0.6s forwards, glow 2s infinite;
-      opacity: 0;
+      padding: 0.75rem 2rem; font-size: 1.2rem; border: none; border-radius: 9999px;
+      background-color: var(--color-principal); color: var(--color-texto); cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s; animation: fadeUp 1s ease 0.6s forwards, glow 2s infinite; opacity:0;
     }
+    #splash button:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
 
-    #splash button:hover {
-      background-color: var(--color-boton-hover);
-      transform: scale(1.05);
-    }
-
-    /* Portfolio (inicialmente oculto) */
     #portfolio { display: none; }
 
-    /* Header */
     header {
-      text-align: center;
-      padding: 4rem 1rem;
+      text-align: center; padding: 4rem 1rem;
       background: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start));
-      border-radius: 1rem;
-      margin: 2rem auto;
-      max-width: 900px;
+      border-radius: 1rem; margin: 2rem auto; max-width: 900px;
       border: 1px solid;
       border-image: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start)) 1;
       box-shadow: 0 0 8px rgba(204,82,0,0.5);
     }
-
     header h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--color-principal); }
     header p { font-size: 1.25rem; margin-bottom: 1.5rem; }
     header a {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      background-color: var(--color-principal);
-      color: var(--color-texto);
-      font-weight: 600;
+      display: inline-block; padding: 0.75rem 2rem; border-radius: 9999px;
+      background-color: var(--color-principal); color: var(--color-texto); font-weight: 600;
       transition: transform 0.3s, background-color 0.3s;
     }
     header a:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
 
     main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
-
     h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--color-principal); }
 
-    /* Grid de proyectos */
-    .projects-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: flex-start;
-    }
-
+    .projects-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: flex-start; }
     .card {
-      /* Fondo con degradado gris predominante y naranja muy sutil */
       background: linear-gradient(135deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start));
       border: 1px solid;
       border-image: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start)) 1;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 0 8px rgba(204,82,0,0.3);
-      transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
-      background-size: 200% 200%;
-      background-position: left top;
-      color: var(--color-texto);
+      border-radius: 1rem; padding: 1.5rem; width: 100%; max-width: 400px;
+      box-shadow: 0 0 8px rgba(204,82,0,0.3); transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
+      background-size: 200% 200%; background-position: left top; color: var(--color-texto);
     }
-    .card:hover { 
-      transform: translateY(-5px); 
-      box-shadow: 0 0 15px rgba(204,82,0,0.6); 
-      background-position: right bottom; /* efecto sutil de movimiento del degradado */
-    }
-
+    .card:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(204,82,0,0.6); background-position: right bottom; }
     .card h3 { margin-bottom: 0.5rem; color: var(--color-principal); font-size: 1.5rem; }
     .card p, .card li { color: var(--color-texto); margin-bottom: 0.5rem; }
     .card ul { padding-left: 1.5rem; margin-bottom: 1rem; }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .card .buttons {
-      display: flex;
-      gap: 1rem;
-    }
-
+    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem; }
+    .card .buttons { display: flex; gap: 1rem; }
     .card .buttons a {
-      flex: 1;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      text-align: center;
-      color: var(--color-texto);
-      font-weight: 600;
-      background-color: var(--color-principal);
+      flex: 1; padding: 0.5rem 1rem; border-radius: 0.5rem; text-align: center;
+      color: var(--color-texto); font-weight: 600; background-color: var(--color-principal);
       transition: background-color 0.3s, transform 0.3s;
     }
     .card .buttons a:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
@@ -210,7 +126,7 @@
           <div class="card">
             <h3>Gestor de Tareas Avanzado</h3>
             <p>Aplicación web interactiva para organizar tareas con prioridad, filtros, edición, búsqueda y contador de pendientes.</p>
-            <img src="gestor de tareas/preview.png" alt="Preview Gestor de Tareas">
+            <img src="Gestor_de_tareas/preview.png" alt="Preview Gestor de Tareas">
             <ul>
               <li>Añadir tareas con Enter o botón</li>
               <li>Prioridad y resaltado automático</li>
@@ -221,7 +137,7 @@
               <li>Modo oscuro</li>
             </ul>
             <div class="buttons">
-              <a href="gestor de tareas/gestor de tareas.html" target="_blank">Ver Proyecto</a>
+              <a href="Gestor_de_tareas/Gestor_de_tareas.html" target="_blank">Ver Proyecto</a>
               <a href="https://github.com/dano327/portfolio" target="_blank">Ver en GitHub</a>
             </div>
           </div>
@@ -250,3 +166,4 @@
 
 </body>
 </html>
+
