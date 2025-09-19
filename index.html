@@ -15,69 +15,110 @@
     }
 
     * { box-sizing: border-box; margin:0; padding:0; }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
       color: var(--color-texto);
       min-height: 100vh;
+      display: flex;
     }
+
     a { text-decoration: none; }
 
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 0 15px rgba(204,82,0,0.5); }
-      50% { box-shadow: 0 0 25px rgba(204,82,0,0.8); }
-    }
-
+    /* Splash */
     #splash {
       position: fixed; top:0; left:0; right:0; bottom:0;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       background-color: #222; z-index: 9999; transition: opacity 0.5s ease;
     }
-    #splash h1 { font-size: 3rem; color: var(--color-principal); margin-bottom: 1rem; text-align: center; animation: fadeUp 1s ease forwards; }
-    #splash p { font-size: 1.5rem; margin-bottom: 2rem; text-align: center; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; }
+
+    #splash h1 { font-size: 3rem; color: var(--color-principal); margin-bottom: 1rem; text-align: center; }
+    #splash p { font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
     #splash button {
       padding: 0.75rem 2rem; font-size: 1.2rem; border: none; border-radius: 9999px;
       background-color: var(--color-principal); color: var(--color-texto); cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s; animation: fadeUp 1s ease 0.6s forwards, glow 2s infinite; opacity:0;
+      transition: background-color 0.3s, transform 0.3s;
     }
     #splash button:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
 
-    #portfolio { display: none; }
+    #portfolio { display: none; flex: 1; }
 
-    header {
-      text-align: center; padding: 4rem 1rem;
-      background: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start));
-      border-radius: 1rem; margin: 2rem auto; max-width: 900px;
-      border: 1px solid;
-      border-image: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start)) 1;
-      box-shadow: 0 0 8px rgba(204,82,0,0.5);
+    /* Menu lateral */
+    nav {
+      width: 220px;
+      background-color: rgba(0,0,0,0.6);
+      padding: 2rem 1rem;
+      border-right: 2px solid var(--color-principal);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      min-height: 100vh;
     }
-    header h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--color-principal); }
-    header p { font-size: 1.25rem; margin-bottom: 1.5rem; }
-    header a {
-      display: inline-block; padding: 0.75rem 2rem; border-radius: 9999px;
-      background-color: var(--color-principal); color: var(--color-texto); font-weight: 600;
-      transition: transform 0.3s, background-color 0.3s;
-    }
-    header a:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
 
-    main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
-    h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--color-principal); }
+    nav a {
+      color: var(--color-texto);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 0.5rem;
+    }
+    nav a:hover { background-color: rgba(204,82,0,0.4); transform: scale(1.05); }
+
+    /* Contenido principal */
+    .content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    /* Sobre mí */
+    #sobre-mi {
+      margin-bottom: 3rem;
+    }
+    #sobre-mi .top-line {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    #sobre-mi .top-line img {
+      width: 120px; height:120px;
+      border-radius: 50%;
+      border: 4px solid var(--color-principal);
+      object-fit: cover;
+    }
+    #sobre-mi .top-line h1 {
+      margin:0;
+      color: var(--color-principal);
+      font-size:1.8rem;
+    }
+    #sobre-mi .bio {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    #sobre-mi .bio h2 { margin-bottom:1rem; color: var(--color-principal); }
+    #sobre-mi .bio p { line-height:1.6; }
+
+    /* Proyectos */
+    h2.proyectos { color: var(--color-principal); text-align: center; margin-bottom: 2rem; }
 
     .projects-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: flex-start; }
+
     .card {
       background: linear-gradient(135deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start));
       border: 1px solid;
       border-image: linear-gradient(45deg, var(--color-borde-gradiente-end), var(--color-borde-gradiente-start)) 1;
-      border-radius: 1rem; padding: 1.5rem; width: 100%; max-width: 400px;
-      box-shadow: 0 0 8px rgba(204,82,0,0.3); transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
-      background-size: 200% 200%; background-position: left top; color: var(--color-texto);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 8px rgba(204,82,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
+      background-size: 200% 200%;
+      background-position: left top;
+      color: var(--color-texto);
     }
     .card:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(204,82,0,0.6); background-position: right bottom; }
     .card h3 { margin-bottom: 0.5rem; color: var(--color-principal); font-size: 1.5rem; }
@@ -94,11 +135,12 @@
 
     footer { text-align: center; padding: 2rem 1rem; color: var(--color-texto); }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2.5rem; }
-      h2 { font-size: 1.75rem; }
-      .card img { height: 180px; }
-      .projects-grid { justify-content: center; }
+    @media (max-width: 800px) {
+      body { flex-direction: column; }
+      nav { width: 100%; border-right:none; border-bottom:2px solid var(--color-principal); min-height:auto; flex-direction:row; justify-content:space-around; }
+      .content { padding:1rem; }
+      #sobre-mi .top-line { flex-direction: column; align-items: center; text-align:center; }
+      #sobre-mi .top-line h1 { margin-top:0.5rem; }
     }
   </style>
 </head>
@@ -113,15 +155,30 @@
 
   <!-- Portfolio -->
   <div id="portfolio">
-    <header>
-      <h1>Dan Ortega</h1>
-      <p>Desarrollador Web y DAW – Proyectos Interactivos</p>
-      <a href="#projects">Ver Mis Proyectos</a>
-    </header>
+    <!-- Menú lateral -->
+    <nav>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#projects">Proyectos</a>
+      <a href="CV.pdf" target="_blank">Descargar CV</a>
+    </nav>
 
-    <main>
+    <!-- Contenido principal -->
+    <div class="content">
+      <!-- Sobre mí -->
+      <section id="sobre-mi">
+        <div class="top-line">
+          <img src="mi-foto.jpg" alt="">
+          <h1>Dan Ortega – Web Developer</h1>
+        </div>
+        <div class="bio">
+          <h2>Sobre mí</h2>
+          <p>Soy un desarrollador web apasionado por crear experiencias interactivas, limpias y funcionales. Me encanta combinar diseño y código para proyectos que impacten.</p>
+        </div>
+      </section>
+
+      <!-- Proyectos -->
       <section id="projects">
-        <h2>Proyectos Destacados</h2>
+        <h2 class="proyectos">Proyectos Destacados</h2>
         <div class="projects-grid">
           <div class="card">
             <h3>Gestor de Tareas Avanzado</h3>
@@ -143,7 +200,7 @@
           </div>
         </div>
       </section>
-    </main>
+    </div>
 
     <footer>
       © 2025 Dan Ortega. Todos los derechos reservados.
@@ -159,7 +216,7 @@
       splash.style.opacity = '0';
       setTimeout(() => {
         splash.style.display = 'none';
-        portfolio.style.display = 'block';
+        portfolio.style.display = 'flex';
       }, 500);
     });
   </script>
