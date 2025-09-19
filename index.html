@@ -48,7 +48,7 @@
     /* Menu lateral */
     nav {
       width: 220px;
-      background-color: rgba(0,0,0,0.6);
+      background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(204,82,0,0.8) 100%);
       padding: 2rem 1rem;
       border-right: 2px solid var(--color-principal);
       display: flex;
@@ -99,7 +99,7 @@
       margin: 0 auto;
     }
     #sobre-mi .bio h2 { margin-bottom:1rem; color: var(--color-principal); }
-    #sobre-mi .bio p { line-height:1.6; }
+    #sobre-mi .bio p { line-height:1.6; margin-bottom:1rem; }
 
     /* Proyectos */
     h2.proyectos { color: var(--color-principal); text-align: center; margin-bottom: 2rem; }
@@ -133,8 +133,6 @@
     }
     .card .buttons a:hover { background-color: var(--color-boton-hover); transform: scale(1.05); }
 
-    footer { text-align: center; padding: 2rem 1rem; color: var(--color-texto); }
-
     @media (max-width: 800px) {
       body { flex-direction: column; }
       nav { width: 100%; border-right:none; border-bottom:2px solid var(--color-principal); min-height:auto; flex-direction:row; justify-content:space-around; }
@@ -167,12 +165,30 @@
       <!-- Sobre mí -->
       <section id="sobre-mi">
         <div class="top-line">
-          <img src="mi-foto.jpg" alt="">
+          <img src="mi-foto.jpg" alt="Foto de Dan Ortega">
           <h1>Dan Ortega – Web Developer</h1>
         </div>
         <div class="bio">
           <h2>Sobre mí</h2>
-          <p>Soy un desarrollador web apasionado por crear experiencias interactivas, limpias y funcionales. Me encanta combinar diseño y código para proyectos que impacten.</p>
+          <p>
+            Soy un desarrollador web con una sólida base en <strong>frontend</strong> y creciente experiencia en <strong>backend</strong>. 
+            Me apasiona crear aplicaciones funcionales, intuitivas y bien estructuradas, donde el diseño y el código se unan 
+            para ofrecer experiencias digitales atractivas.
+          </p>
+          <p>
+            Cuento con formación en <strong>Desarrollo de Aplicaciones Web</strong> y experiencia profesional previa en 
+            <em>gestión informática y soporte administrativo</em> durante más de 10 años, lo que me ha permitido desarrollar 
+            competencias como <strong>resolución de problemas, organización, adaptabilidad y trabajo en equipo</strong>.
+          </p>
+          <p>
+            Entre mis habilidades técnicas destaco el manejo de <strong>HTML, CSS, JavaScript, Python, SQL</strong>, así como 
+            experiencia con <strong>React</strong>, <strong>Node.js</strong>, <strong>Git/GitHub</strong> y diferentes entornos 
+            de desarrollo (VS Code, IntelliJ, NetBeans). También he trabajado con <strong>bases de datos</strong> (MySQL, Oracle, DB Browser).
+          </p>
+          <p>
+            🚀 Actualmente estoy abierto a oportunidades de prácticas o proyectos colaborativos donde pueda aplicar mis conocimientos, 
+            seguir aprendiendo y aportar valor a equipos dinámicos.
+          </p>
         </div>
       </section>
 
@@ -201,10 +217,6 @@
         </div>
       </section>
     </div>
-
-    <footer>
-      © 2025 Dan Ortega. Todos los derechos reservados.
-    </footer>
   </div>
 
   <script>
@@ -223,4 +235,3 @@
 
 </body>
 </html>
-
