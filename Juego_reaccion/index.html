@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juego de Reacción - Game Boy</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="gameboy">
+
+  <!-- Pantalla LCD -->
+  <div class="screen-frame">
+    <div id="game-area">
+      <div id="target"></div>
+      <div id="result-notification"></div>
+      <div id="unlock-notification"></div>
+    </div>
+
+    <!-- Pantalla de inicio -->
+    <div id="start-screen" class="screen">
+      <h1>Juego de Reacción</h1>
+      <p>Haz clic en los cuadros que aparecen, ¡rápido!</p>
+      <p class="click-text">- Click para comenzar -</p>
+    </div>
+
+    <!-- Pantalla de selección de niveles -->
+    <div id="level-screen" class="screen hidden">
+      <h2>Selecciona un nivel</h2>
+      <div id="level-panel"></div>
+      <button id="level-start-btn">START</button>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="score-area">
+    <p>Puntuación: <span id="score">0</span></p>
+    <p>Tiempo: <span id="time">30</span> s</p>
+    <p>Nivel actual: <span id="current-level">1</span></p>
+  </div>
+
+  <!-- Botones -->
+  <button id="menu-btn">MENU</button>
+
+  <!-- Controles decorativos -->
+  <div class="controls">
+    <div class="dpad">
+      <div class="button up"></div>
+      <div class="button left"></div>
+      <div class="button right"></div>
+      <div class="button down"></div>
+    </div>
+    <div class="buttons">
+      <div class="button a"></div>
+      <div class="button b"></div>
+    </div>
+  </div>
+
+</div>
+
+<audio id="click-sound" src="audio/click.mp3"></audio>
+<audio id="unlock-sound" src="audio/unlock.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
