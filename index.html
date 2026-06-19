@@ -52,21 +52,23 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 220px;
+      width: 240px;
       height: 100vh;
-      padding: 2rem 1rem;
+      padding: 4rem 1.25rem;
       background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(204,82,0,0.8) 100%);
       border-right: 2px solid var(--color-principal);
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      justify-content: center;
+      gap: 2.25rem;
       z-index: 999;
     }
 
     nav a {
       color: var(--color-texto);
       font-weight: 600;
-      padding: 0.5rem 1rem;
+      font-size: 1.08rem;
+      padding: 0.85rem 1rem;
       transition: background-color 0.3s, transform 0.3s;
       border-radius: 0.5rem;
     }
@@ -76,7 +78,7 @@
     .content {
       flex: 1;
       padding: 2rem;
-      margin-left: 220px; /* espacio para menú lateral fijo */
+      margin-left: 240px; /* espacio para menú lateral fijo */
     }
 
     /* Sobre mí */
@@ -89,11 +91,23 @@
       gap: 1rem;
       margin-bottom: 1rem;
     }
-    #sobre-mi .top-line img {
-      width: 120px; height:120px;
+    #sobre-mi .photo-frame {
+      width: 148px;
+      height: 148px;
       border-radius: 50%;
+      overflow: hidden;
       border: 4px solid var(--color-principal);
+      background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.08), rgba(0,0,0,0.78));
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+      isolation: isolate;
+    }
+    #sobre-mi .photo-frame img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      object-position: center 32%;
+      mix-blend-mode: multiply;
+      transform: scale(1.08);
     }
     #sobre-mi .top-line h1 {
       margin:0;
@@ -202,7 +216,7 @@
     <nav>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#projects">Proyectos</a>
-      <a href="CV.pdf" target="_blank">Descargar CV</a>
+      <a href="cv-dan.pdf" target="_blank">Descargar CV</a>
     </nav>
 
     <!-- Contenido principal -->
@@ -210,7 +224,9 @@
       <!-- Sobre mí -->
       <section id="sobre-mi">
         <div class="top-line">
-          <img src="mi-foto.jpg" alt="Foto de Dan Ortega">
+          <div class="photo-frame">
+            <img src="ES16437.jpg" alt="Foto de Dan Ortega">
+          </div>
           <h1>Dan Ortega – Web Developer</h1>
         </div>
         <div class="bio">
@@ -267,16 +283,32 @@
             <h3>Juego de Reacción</h3>
             <p>Un divertido juego para poner a prueba tu rapidez: haz clic en la pantalla cuando el color cambie y mide tus reflejos.</p>
             <img src="Juego_reaccion/preview.png" alt="Preview Juego de Reacción">
-           <ul>
-  <li> Motor de juego en tiempo real con animaciones suaves</li>
-  <li> Generación dinámica de objetivos y niveles con dificultad progresiva</li>
-  <li> Sistema de puntuación, estadísticas y desbloqueo de niveles</li>
-  <li> Diseño minimalista, responsive y optimizado para cualquier dispositivo</li>
-  <li> Uso avanzado de DOM, eventos y animaciones con JavaScript puro</li>
-</ul>
+            <ul>
+              <li>Detección de reflejos en milisegundos</li>
+              <li>Rondas aleatorias</li>
+              <li>Estadísticas de tus tiempos</li>
+              <li>Diseño minimalista y responsive</li>
+            </ul>
             <div class="buttons">
               <a href="Juego_reaccion/index.html" target="_blank">Ver Proyecto</a>
               <a href="https://github.com/dano327/Portfolio" target="_blank">Ver en GitHub</a>
+            </div>
+          </div>
+
+          <!-- Proyecto ERP -->
+          <div class="card">
+            <h3>ERP de Gestión Empresarial</h3>
+            <p>Proyecto final de desarrollo de una aplicación ERP orientada a la gestión empresarial, con autenticación y módulos conectados.</p>
+            <img src="image.png" alt="Preview ERP de gestión empresarial">
+            <ul>
+              <li>Aplicación desarrollada con React</li>
+              <li>Autenticación y backend con Supabase</li>
+              <li>Gestión de pedidos, productos y proveedores</li>
+              <li>Estructura preparada para facturas y albaranes</li>
+            </ul>
+            <div class="buttons">
+              <a href="PFC_ERP/PFC/ERP/build/index.html" target="_blank">Abrir ERP</a>
+              <a href="https://github.com/DanO327/PFC---ERP" target="_blank">Ver en GitHub</a>
             </div>
           </div>
 
@@ -301,5 +333,3 @@
 
 </body>
 </html>
-
-
